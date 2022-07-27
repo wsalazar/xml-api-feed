@@ -1,0 +1,14 @@
+{
+    "name": "futurestay/code-challenge",
+    "description": "Consume test web service and provide xml response",
+    "require": {
+        "slim/slim": "3.*",
+        "slim/psr7": "^1.4",
+        "guzzlehttp/guzzle": "^7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
