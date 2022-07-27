@@ -18,12 +18,25 @@ class BoredAPIService extends ConsumeServices
      */
     public function hydrate(array $results): array
     {
-        $randomUsersArray = [];
+        $boredArray = [];
         foreach ($results as $index => $oneResult) {
-            $randomUsersArray[$index]['person']['fullName'] = ['first' => $oneResult->name->first, 'last' => $oneResult->name->last];
-            $randomUsersArray[$index]['person']['contact'] = ['phone' => $oneResult->phone, 'email' => $oneResult->email];
-            $randomUsersArray[$index]['person']['location'] = ['country' => $oneResult->location->country];
+            $objectVars = get_object_vars($oneResult);
+            foreach ($objectVars as $key => $vars) {
+                $boredArray[$index]['BoredApi'][$key] = $vars;
+            }
         }
-        return $randomUsersArray;
+        return $boredArray;
+    }
+
+    /**
+     * @param array $array
+     * @return array
+     */
+    public final function sort(array $array): array
+    {
+        usort($array, function($var1, $var2) {
+            return strcmp($var1['BoredApi']['type'], $var2['BoredApi']['type']);
+        });
+        return $array;
     }
 }

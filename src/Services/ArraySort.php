@@ -7,19 +7,22 @@ class ArraySort
 {
     private $list = [];
 
+    private $service;
+
     /**
-     * @param $array
-     * @param $flags
+     * @param ConsumeServices $service
+     * @param array $array
      */
-    public function __construct(array $array = [])
+    public function __construct(ConsumeServices $service, array $array = [])
     {
+        $this->service = $service;
         $this->list = $array;
     }
 
     /**
      * @return $this
      */
-    public function sortAscending(): ArraySort
+    public final function sortAscending(): ArraySort
     {
         $this->list = $this->usort($this->list);
 
@@ -30,12 +33,9 @@ class ArraySort
      * @param array $array
      * @return array
      */
-    public final function usort(array $array):array
+    public final function usort(array $array): array
     {
-        usort($array, function($var1, $var2) {
-            return strcmp($var1['person']['fullName']['last'], $var2['person']['fullName']['last']);
-        });
-        return $array;
+        return $this->service->sort($array);
     }
 
     /**

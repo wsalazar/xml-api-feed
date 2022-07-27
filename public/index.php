@@ -12,21 +12,9 @@ $app = new \Slim\App;
 require_once('../app/api/get_xml.php');
 
 
-//$app->get('/', function (Request $request, Response $response, $args){
-//    $response->getBody()->write("Hello World");
-//    return $response;
-//});
-////http://localhost/api/public/index.php/hello/zak
-//$app->get('/hello/{name}', function (Request $request, Response $response, $args){
-//    $name = $args['name'];
-//    $response->getBody()->write("Hello, $name");
-//    return $response;
-//});
-
 $app->get('/', function (Request $request, Response $response, $args){
-//    $name = $args['name'];
-//    $response->getBody()->write("Hello, $name");
-//    return $response;
+    $response->getBody()->write("Hello World");
+    return $response;
 });
 
 //Run app
